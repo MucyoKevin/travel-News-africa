@@ -11,6 +11,8 @@
   --secondary-font : 'nyt-franklin ' ,helvetica , arial , sans-serif;
   --text-size : 16px;
   --text-weight : 400;
+  --background-start-rgb: #000;
+  --background-end-rgb: 255, 255, 255;
 
 
   /* end */

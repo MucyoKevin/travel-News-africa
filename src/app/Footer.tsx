@@ -77,7 +77,7 @@ const footer= ()=>{
             </ul>
         </div>
     </div>
-    <div className="flex flex-col justify-center items-center text-center p-5 bg-gray-50">
+    <div className="flex flex-col justify-center items-center pt-20 text-center p-5 bg-gray-50">
         <h1 className="text-gray-800 font-semibold">
         © 2021-2023 All rights reserved | <span className="hover:text-blue-600 cursor-pointer">
             Travel Nation Africa

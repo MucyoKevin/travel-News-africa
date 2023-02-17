@@ -76,6 +76,15 @@
   margin-bottom:20px ;
 }
 
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr min(140ch , 100%) 1fr;
+}
+
+.wrapper > *{
+  grid-column: 2;
+}
+
 
 /* end  */
 .main {

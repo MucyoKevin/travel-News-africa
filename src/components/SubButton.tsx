@@ -1,19 +1,17 @@
-'use client'
-
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const subButton = () => {
-    const router = useRouter();    
-    
+        
     return(
-        <button 
-        type="button"
-        className= "hover:bg-slate-900 text-white bg-slate-600 cursor-pointer px-4 lg;px-8 py-2 lg;py-4 rounded-full   "
-        onClick={()=> router.push('/Subscription')}
-        >
-            Subscribe For rwf 200 /week
-        </button>
+        <Link 
+        href="/subscription"
+        className= "hover:bg-slate-900 text-white bg-slate-600 cursor-pointer font-serif text-sm px-2 lg;px-8 py-2 lg;py-4  "
+         >
+        Subscribe for rwf200 /week
+        </Link>
+        
     )
 }
 
 export default subButton;
+
