@@ -13,6 +13,7 @@ module.exports = {
       text :{
         size : {
           "text-size" : "var(--text-size)",
+          "card-font-size" : "var(--card-font-size)"
         },
         font :{
           "main-font" : "var(--main-font)",

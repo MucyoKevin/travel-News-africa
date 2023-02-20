@@ -18,7 +18,7 @@ const SideBar = () => {
       <div
         className={
           ShouldMenuOpen
-            ? "fixed bg-primary-color list-none top-0 left-0 h-full w-48 text-black p-3 space-y-3"
+            ? "fixed bg-primary-color list-none top-0 left-0 h-full w-52 text-black p-3 space-y-3"
             : "hidden"
         }
       >
