@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const footer = () => {
   return (
-    <footer className="w-full">
+    <footer className="max-w-screen-xl mx-auto">
       <div className=" h-1/2 w-full flex md:flex-row flex-col justify-between items-start">
         <div className="p-3">
           <ul>
@@ -117,7 +117,7 @@ const footer = () => {
           </ul>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center pt-20 text-center">
+      <div className="flex flex-col justify-center items-center pt-20 text-center pb-5">
         <h1 className="text-gray-800 font-semibold">
           © 2021-2023 All rights reserved |{" "}
           <span className="hover:text-blue-600 cursor-pointer">

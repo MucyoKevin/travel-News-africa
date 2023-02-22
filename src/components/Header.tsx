@@ -9,7 +9,7 @@ import SearchBar from "@/components/SearchBar";
 const Header = () => {
   return (
     <header className="border-b-2">
-      <div className="grid  justify-around grid-cols-3 gap-8 w-full p-3.5 items-center auto-rows-50px ">
+      <div className="flex flex-row justify-between items-center max-w-screen-xl mx-auto">
         <div className="flex items-center position:fixed">
           <SideBar />
           <SearchBar />
