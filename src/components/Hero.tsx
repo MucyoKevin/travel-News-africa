@@ -6,7 +6,7 @@ const Hero = () => {
     <section>
       <div className="border-b-2 my-5">
         <LongCard
-          href="#"
+          href="/travel/greenland-tourism"
           title="What Did You Spend on Your Vacation? We'd Love to Hear."
           image={{
             src: "/image-one.jpg",
