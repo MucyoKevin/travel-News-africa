@@ -18,9 +18,24 @@ const Hero = () => {
           alias. Minima asperiores dolorum amet explicabo debitis porro natus
           dolores dicta.
         </LongCard>
+        <div className="sm:hidden">
+          <Card
+            href="#"
+            title="What Did You Spend on Your Vacation? We'd Love to Hear."
+            image={{
+              src: "/image-one.jpg",
+              alt: "Something",
+            }}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
+            tempora non pariatur corporis id laudantium molestiae cum dolore
+            sint alias. Minima asperiores dolorum amet explicabo debitis porro
+            natus dolores dicta.
+          </Card>
+        </div>
       </div>
 
-      <div className="flex flex-row justify-between divide-x-2 my-5 ">
+      <div className="flex flex-col sm:flex-row justify-between divide-x-2 my-5 ">
         <Card
           href="#"
           title="What Did You Spend on Your Vacation? We'd Love to Hear."
@@ -62,7 +77,7 @@ const Hero = () => {
         </Card>
       </div>
 
-      <div className="flex flex-row py-5 space-x-4 divide-x-2">
+      <div className="flex flex-col sm:flex-row py-5 sm:space-x-4 sm:divide-x-2">
         <Card
           href="#"
           title="What Did You Spend on Your Vacation? We'd Love to Hear."

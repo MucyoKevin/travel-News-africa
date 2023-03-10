@@ -11,11 +11,10 @@ const footer = () => {
       <div className=" h-1/2 w-full flex md:flex-row flex-col justify-between items-start">
         <div className="p-3">
           <ul>
-            <h1 className="text-gray-800 font-serif text-2xl pb-6">
-              {" "}
+            <h1 className="text-gray-800 font-serif text-2xl pb-6 text-center">
               Travel News <span className="font-bold">Africa </span>
             </h1>
-            <div className="flex gsp-6 pb-5">
+            <div className="flex gsp-6 pb-5 [&>*]:mx-1">
               <FaInstagram className="text-2xl cursor-pointer hover:text-yellow-600" />
               <FaTwitter className="text-2xl cursor-pointer hover:text-yellow-600" />
               <FaLinkedin className="text-2xl cursor-pointer hover:text-yellow-600" />

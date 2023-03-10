@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface CardProps {
-  children: React.ReactNode;
-  image: { src: string; alt: string };
+  children?: React.ReactNode;
+  image?: { src: string; alt: string };
   height?: number;
   width?: number;
   title: string;
@@ -25,17 +25,25 @@ const Card = ({
   }
 
   return (
-    <div className="flex flex-col max-w-sm pl-5">
-      <Image src={image.src} height={height} width={width} alt={image.alt} />
+    <div className="flex flex-col px-2 max-w-sm min-w-[240px] my-2">
+      {image && (
+        <Image
+          className="w-full"
+          src={image.src}
+          height={height}
+          width={width}
+          alt={image.alt}
+        />
+      )}
       <div>
         <h2
           className={`pt-3 ${
-            sm ? "text" : "text-lg font-bold"
+            sm ? "text font-bold" : "text-3xl font-bold"
           }  text-xl hover:underline`}
         >
           <Link href={href}>{title}</Link>
         </h2>
-        {!sm && <p className="text-sm truncate">{children}</p>}
+        {!sm && children && <p className="text-sm truncate my-3">{children}</p>}
       </div>
     </div>
   );
@@ -63,14 +71,20 @@ export const LongCard = ({
   href,
 }: LongCardProps) => {
   return (
-    <div className="flex flex-row justify-between py-5">
-      <div className="flex flex-col pr-2 justify-center">
+    <div className="hidden sm:flex flex-row justify-between py-5">
+      <div className="flex flex-col pr-2 justify-center basis-[40%]">
         <h2 className="hover:underline  mb-2 text-5xl capitalize font-bold">
           <Link href={href}> {title}</Link>
         </h2>
         <p className="text-lg text-left font-normal">{children}</p>
       </div>
-      <Image src={image.src} height={height} width={width} alt={image.alt} />
+      <Image
+        className="basis-[60%]"
+        src={image.src}
+        height={height}
+        width={width}
+        alt={image.alt}
+      />
     </div>
   );
 };
@@ -95,17 +109,33 @@ export const WideCard = ({
   href,
 }: WideCardProps) => {
   return (
-    <div className="flex flex-row py-5 justify-around items-stretch border-b-2 max-w-5xl">
+    <div className="flex flex-col sm:flex-row py-5 px-2 justify-around items-stretch border-b-2 max-w-5xl">
       <div className="">
-        <p className="p-3 whitespace-nowrap ">Feb,16 -2023</p>
+        <p className="p-3 whitespace-nowrap hidden sm:block">Feb,16 -2023</p>
       </div>
-      <div className="flex flex-col justify-around pl-2">
-        <h2 className="hover:underline  mb-2 text-2xl capitalize font-bold">
+      <h2 className="hover:underline m-2 text-2xl sm:hidden  capitalize font-bold">
+        <Link href={href}> {title} </Link>
+      </h2>
+      <div className="pl-2 sm:flex sm:flex-col">
+        <h2 className="hover:underline m-2 text-2xl sm:text-2xl hidden sm:block capitalize font-bold">
           <Link href={href}> {title} </Link>
         </h2>
-        <p className=" text-lg ">{children}</p>
+        <Image
+          className="max-w-[150px] max-h-[99px] float-right mr-4 mb-4 sm:hidden"
+          src={image.src}
+          height={height}
+          width={width}
+          alt={image.alt}
+        />
+        <p className="text-lg clear-left">{children}</p>
       </div>
-      <Image src={image.src} height={height} width={width} alt={image.alt} />
+      <Image
+        className="hidden sm:block"
+        src={image.src}
+        height={height}
+        width={width}
+        alt={image.alt}
+      />
     </div>
   );
 };

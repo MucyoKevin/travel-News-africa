@@ -11,7 +11,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="p-2 flex flex-row items-center max-h-8">
+    <div className="p-2 hidden sm:flex flex-row items-center max-h-8">
       <MagnifyingGlassIcon
         className="mx-2 h-5 w-5 cursor-pointer"
         onClick={HandleEvent}
