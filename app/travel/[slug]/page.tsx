@@ -1,3 +1,5 @@
+"use client";
+
 import {
   GiftIcon,
   BookmarkIcon,
@@ -10,6 +12,9 @@ import PostImage from "@/components/PostImage";
 import Author from "@/components/AuthorCard";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
+import { getSinglePost } from "app/graphql/queries";
+import { useEffect, useState } from "react";
+import parse from "html-react-parser";
 
 const SocialMediaLinks = () => {
   return (
@@ -60,20 +65,32 @@ function SharingLinks() {
   );
 }
 
-const Post = () => {
+const Post = ({ params }) => {
+  const [post, setPost] = useState();
+
+  const getPost = async (slug: string) => {
+    const fetchedPost = await getSinglePost(slug);
+    setPost(fetchedPost);
+  };
+
+  useEffect(() => {
+    getPost(params.slug);
+  }, []);
+
+  if (!post) {
+    return <p>loading...</p>;
+  }
+
   return (
     <div className="px-4">
       <section className="wrapper [&>p]:text-base [&>*]:my-3 [&>p]:sm:text-lg leading-relaxed">
         <h1 className="py-5 mb-2 text-4xl sm:text-5xl capitalize font-bold">
-          Greenland Wants You to Visit. <br /> But Not All at Once.
+          {(post && post?.title) || ""}
         </h1>
-        <p>
-          The Arctic island, renowned for its glaciers and fjords, is expanding
-          airports and hotels to energize its economy, even as it tries to avoid
-          the pitfalls of overtourism.
-        </p>
+        <p>{(post && parse(post?.excerpt)) || ""}</p>
         <span className="block border border-solid border-gray-300 my-5"></span>
         <SharingLinks />
+
         <PostImage
           image={{
             src: "/greenland-hd-1.webp",
