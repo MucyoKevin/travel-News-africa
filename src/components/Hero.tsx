@@ -61,7 +61,7 @@ const Hero = () => {
         <div className="flex flex-col sm:flex-row justify-center divide-x-4 divide-slate-600 my-5">
           {bigStoryEnglish && (
             <FirstCard
-              href={`/travel/${bigStoryEnglish?.slug || ""}`}
+              href={`${bigStoryEnglish?.slug || ""}`}
               title={bigStoryEnglish?.title || ""}
               image={{
                 src: bigStoryEnglish?.featuredImage?.node?.sourceUrl || "",
@@ -80,7 +80,7 @@ const Hero = () => {
 
           {bigStoryFrench && (
             <FirstCard
-              href={`/travel/${bigStoryFrench?.slug || ""}`}
+              href={`/${bigStoryFrench?.slug || ""}`}
               title={bigStoryFrench?.title || ""}
               image={{
                 src: bigStoryFrench?.featuredImage?.node?.sourceUrl || "",
@@ -99,7 +99,7 @@ const Hero = () => {
 
           {bigStoryArabic && (
             <FirstCard
-              href={`/travel/${bigStoryArabic?.slug || ""}`}
+              href={`/${bigStoryArabic?.slug || ""}`}
               title={bigStoryArabic?.title || ""}
               image={{
                 src: bigStoryArabic?.featuredImage?.node?.sourceUrl || "",

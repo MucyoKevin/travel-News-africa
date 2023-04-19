@@ -41,7 +41,7 @@ const Card = ({
             sm ? "text font-bold" : "text-3xl font-bold"
           }  text-xl hover:underline`}
         >
-          <Link href={href}>{title}</Link>
+          <Link href={`/travel/${href}`}>{title}</Link>
         </h2>
         {!sm && children && <p className="text-sm  my-3">{children}</p>}
       </div>
@@ -74,7 +74,7 @@ export const LongCard = ({
     <div className="hidden sm:flex flex-row justify-between py-5">
       <div className="flex flex-col pr-2 justify-center basis-[40%]">
         <h2 className="hover:underline  mb-2 text-5xl capitalize font-bold">
-          <Link href={href}> {title}</Link>
+          <Link href={`/travel/${href}`}> {title}</Link>
         </h2>
         <p className="text-lg text-left font-normal">{children}</p>
       </div>
@@ -116,11 +116,11 @@ export const WideCard = ({
         <p className="p-3 whitespace-nowrap hidden sm:block">{date}</p>
       </div>
       <h2 className="hover:underline m-2 text-2xl sm:hidden  capitalize font-bold">
-        <Link href={href}> {title} </Link>
+        <Link href={`/travel/${href}`}> {title} </Link>
       </h2>
       <div className="pl-2 sm:flex sm:flex-col">
         <h2 className="hover:underline m-2 text-2xl sm:text-2xl hidden sm:block capitalize font-bold">
-          <Link href={href}> {title} </Link>
+          <Link href={`/travel/${href}`}> {title} </Link>
         </h2>
         <Image
           className="max-w-[150px] max-h-[99px] float-right mr-4 mb-4 sm:hidden"
@@ -185,7 +185,7 @@ export const FirstCard = ({
             sm ? "text font-bold" : "text-4xl font-bold"
           }  text-xl hover:underline`}
         >
-          <Link href={href}>{title}</Link>
+          <Link href={`/travel/${href}`}>{title}</Link>
         </h2>
         {!sm && children && <p className="text-sm indent-4  my-3">{children}</p>}
       </div>

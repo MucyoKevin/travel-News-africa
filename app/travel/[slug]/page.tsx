@@ -1,20 +1,13 @@
+// @ts-nocheck
 "use client";
-
-import {
-  GiftIcon,
-  BookmarkIcon,
-  ShareIcon,
-  ChatBubbleOvalLeftIcon,
-} from "@heroicons/react/24/outline";
 import Link from "next/link";
-import IconBtn from "@/components/IconButton";
-import PostImage from "@/components/PostImage";
 import Author from "@/components/AuthorCard";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
-import { getSinglePost } from "app/graphql/queries";
+import { getPosts, getPostsbyTag, getSinglePost } from "app/graphql/queries";
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
+import SharingButton from "@/components/SharingButton";
 
 const SocialMediaLinks = () => {
   return (
@@ -54,27 +47,29 @@ const ExploreSuggestion = ({ country, children }: IExploreSuggestion) => {
   );
 };
 
-function SharingLinks() {
-  return (
-    <div className="flex flex-nowrap justify-around sm:justify-start">
-      <IconBtn icon={GiftIcon}>Give this article</IconBtn>
-      <IconBtn icon={BookmarkIcon} />
-      <IconBtn icon={ShareIcon} />
-      <IconBtn icon={ChatBubbleOvalLeftIcon}>15</IconBtn>
-    </div>
-  );
-}
-
 const Post = ({ params }) => {
   const [post, setPost] = useState();
+  const [editorsPick, setEditorsPick] = useState([]);
+  const [morePosts, setMorePosts] = useState([]);
 
   const getPost = async (slug: string) => {
     const fetchedPost = await getSinglePost(slug);
     setPost(fetchedPost);
   };
 
+  const fetchByTag = (tag: string) => {
+    return getPostsbyTag(tag);
+  };
+
+  const fetchMorePosts = () => {
+    return getPosts();
+  };
+  useEffect(() => {
+    fetchByTag("editors-pick").then((res) => setEditorsPick(res));
+  }, []);
   useEffect(() => {
     getPost(params.slug);
+    fetchMorePosts().then((res) => setMorePosts(res));
   }, []);
 
   if (!post) {
@@ -89,101 +84,18 @@ const Post = ({ params }) => {
         </h1>
         <p>{(post && parse(post?.excerpt)) || ""}</p>
         <span className="block border border-solid border-gray-300 my-5"></span>
-        <SharingLinks />
-
-        <PostImage
-          image={{
-            src: "/greenland-hd-1.webp",
-            alt: "greenland image",
-          }}
-          fullBleed
-          description="Ilulissat’s icy fjord, a UNESCO World Heritage site, is one of Greenland’s main tourist destinations even though its airport is currently too small to accommodate large jets.Credit..."
-        />
+        <SharingButton />
+        {(post && parse(post?.content)) || ""}
         <Author
-          author="Gabriel Leigh"
-          createDate="Feb. 21, 2023"
-          updateDate="Feb. 22, 2023"
+          author={(post && post?.author?.node?.name) || ""}
+          createDate="23/04/2023"
+          updateDate="23/04/2023"
           readTime={5}
         />
-        <p>
-          “The weather decides”: It could almost be the motto of Greenland.
-          Visitors drawn to this North Atlantic island to see its powder blue
-          glaciers, iceberg-clogged fjords and breathtakingly stark landscapes
-          quickly learn to respect the elements, and they’re sometimes rewarded
-          for it.
-        </p>
-        <p>
-          One cold December day, I was waiting for a delayed flight in
-          Kangerlussuaq, a former U.S. military base just above the Arctic
-          Circle, when a friendly Air Greenland pilot named Stale asked if I’d
-          like to join him on a drive to the harbor to “pick up some musk ox
-          heads.” The offer seemed very Greenlandic, so how could I refuse?
-        </p>
-        <p>
-          By early afternoon, it was already getting dark. We hopped into a
-          pickup truck and headed down a long, icy road. At the water’s edge,
-          Stale picked up a musk ox skull — they are kept as trophies, and the
-          horns can be valuable for carving and toolmaking. Then we drove up a
-          snow-covered mountain. The full moon illuminated the fjord below. Next
-          to it, the town looked like a lunar base: a small pocket of human
-          activity nestled in a seemingly infinite void.
-        </p>
-        <PostImage
-          image={{
-            src: "/greenland-hd-4.webp",
-            alt: "greenland image",
-          }}
-          fullBleed
-          description="The airport in Kangerlussuaq, a former U.S. military base, is where most international flights to Greenland currently land because of its large runway. Passengers must change to smaller aircraft to continue on to destinations like Ilulissat and Nuuk, the capital.Credit..."
-        />
-        <p>
-          The new jet is part of a plan to invigorate the island’s tourism
-          industry. Greenland, which is part of Denmark but has autonomy over
-          most domestic affairs, is investing hundreds of millions of dollars in
-          transportation, building new runways and terminals in Nuuk and
-          Ilulissat. If all goes according to the government’s plan, large jets
-          could bring international visitors directly to these towns by 2024.
-        </p>
-        <p>
-          The 35-year-old prime minister, Mute B. Egede, who supports eventual
-          independence from Denmark, sees tourism as a way to build economic
-          self-sufficiency. The government has banned all oil exploration and
-          has been cautious about expanding mining despite the potential for
-          profits: It blocked the development of one rare-earth mining project
-          over fears about uranium contamination.
-        </p>
-        <PostImage
-          image={{
-            src: "/greenland-hd-3.webp",
-            alt: "greenland image",
-          }}
-          description="The airport in Kangerlussuaq, a former U.S. military base, is where most international flights to Greenland currently land because of its large runway. Passengers must change to smaller aircraft to continue on to destinations like Ilulissat and Nuuk, the capital.Credit..."
-        />
-        <p>
-          The chief executive of Air Greenland, Jacob Nitter Sorensen, told me
-          last year that the airline has North America in its sights, with New
-          York as a top destination. That would put Nuuk just a four-hour hop
-          away from the U.S. East Coast, meaning Americans would no longer need
-          to backtrack from Copenhagen. (Nearly all flights to Greenland
-          currently pass through the Danish capital.) But a sudden surge of
-          tourists could strain Greenland’s limited infrastructure, and
-          challenge what makes the island special. Visitors come to experience
-          its remoteness.{" "}
-        </p>
-        <p>
-          Fly down the west coast and you’ll pass countless fjords and glaciers
-          crowded only with birds and reindeer. You’re more likely to spot
-          wildlife like humpback whales, narwhals, polar bears and musk oxen
-          than to see a tour bus. Some locals worry about becoming the next
-          Iceland, which has struggled to cope with hordes of tourists and
-          rising prices as that island’s popularity has exploded in the last
-          decade.
-        </p>
-
         <SocialMediaLinks />
         <Button path="#">Read 93 comments</Button>
 
-        <SharingLinks />
+        <SharingButton />
 
         <span className="block my-5">
           <ExploreSuggestion country="New Zealand">
@@ -213,145 +125,63 @@ const Post = ({ params }) => {
           <span className="block border border-solid border-gray-300 my-5"></span>
           <h2 className="text-2xl font-bold m-3">More in Travel</h2>
           <div className="flex flex-col flex-wrap sm:flex-row sm:flex-nowrap">
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
+            {morePosts &&
+              morePosts.slice(0, 3).map(({ node: morePosts }) => (
+                <Card
+                  href={`${morePosts.slug || ""}`}
+                  title={morePosts.title || ""}
+                  image={{
+                    src: morePosts?.featuredImage?.node?.sourceUrl || "",
+                    alt: "Something",
+                  }}
+                  sm
+                />
+              ))}
           </div>
           <div className="flex flex-col flex-wrap sm:flex-row sm:flex-nowrap">
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
+            {morePosts &&
+              morePosts.slice(3, 6).map(({ node: morePosts }) => (
+                <Card
+                  href={`${morePosts.slug || ""}`}
+                  title={morePosts.title || ""}
+                  image={{
+                    src: morePosts?.featuredImage?.node?.sourceUrl || "",
+                    alt: "Something",
+                  }}
+                  sm
+                />
+              ))}
           </div>
           <span className="block border border-solid border-gray-300 my-5"></span>
           <h2 className="text-2xl font-bold m-3">Editors’ Picks</h2>
           <div className="flex flex-col flex-wrap sm:flex-row sm:flex-nowrap">
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
-            <Card
-              href="#"
-              title="What Did You Spend on Your Vacation? We'd Love to Hear."
-              image={{
-                src: "/image-one.jpg",
-                alt: "Something",
-              }}
-              sm
-            />
+            {editorsPick &&
+              editorsPick.slice(0, 3).map(({ node: editorsPick }) => (
+                <Card
+                  href={`${editorsPick?.slug || ""}`}
+                  title={editorsPick?.title || ""}
+                  image={{
+                    src: editorsPick?.featuredImage?.node?.sourceUrl || "",
+                    alt: "Something",
+                  }}
+                  sm
+                />
+              ))}
           </div>
         </div>
         <div className="sm:basis-[33.33%] p-2">
           <span className="block border border-solid border-gray-300 my-5"></span>
           <h2 className="text-2xl font-bold m-3">Most Popular</h2>
           <div className="flex flex-col flex-wrap ">
-            <Card
-              href="#"
-              title="‘Saturday Night Live’ Mocks Trump’s Trip to Ohio"
-              sm
-            />
-            <Card
-              href="#"
-              title="Give Your Heirloom Jewelry a Modern Makeover"
-              sm
-            />
-            <Card
-              href="#"
-              title="The Remains of a Son Missing for Nearly 50 Years Are Identified"
-              sm
-            />
-            <Card
-              href="#"
-              title="The Remains of a Son Missing for Nearly 50 Years Are Identified"
-              sm
-            />
-            <Card
-              href="#"
-              title="After Model’s Gruesome Killing, Suspicion Falls on Ex-Husband and His Family"
-              sm
-            />
-            <Card href="#" title="Enter the New Era of Stealth Wealth" sm />
-            <Card
-              href="#"
-              title="Overlooked No More: Clara Driscoll, Designer of Visions in Glass for Tiffany"
-              sm
-            />
-            <Card
-              href="#"
-              title="Is This Fashion’s Most Knocked-Off Shoe Design?"
-              sm
-            />
-            <Card
-              href="#"
-              title="‘I Could See All of My Neighbors Sitting Out on Their Porch Steps’"
-              sm
-            />
-            <Card
-              href="#"
-              title="He Survived the Trade Center Bombing. ‘I Always Knew They’d Be Back.’"
-              sm
-            />
+            {morePosts &&
+              morePosts
+                .slice(0, 10)
+                .map(({ node: morePosts }) => (
+                  <Card
+                    href={morePosts.slug || ""}
+                    title={morePosts.title || ""}
+                  />
+                ))}
           </div>
         </div>
       </section>
@@ -360,3 +190,4 @@ const Post = ({ params }) => {
 };
 
 export default Post;
+console.log(Post);

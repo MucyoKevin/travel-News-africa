@@ -1,15 +1,22 @@
-"use client";
+// @ts-nocheck
 
+"use client";
+import { useRouter } from "next/navigation";
 import "tailwindcss/tailwind.css";
 import Link from "next/link";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
-
 import Button from "@/components/Button";
 import SideBar from "@/components/SideBar";
 import SearchBar from "@/components/SearchBar";
 import Dropdown from "./Dropdown";
 
+
 const Header = () => {
+  const router = useRouter()
+  const handleClick = (e)=>{
+    e.preventDefault()
+    router.push('/login')
+  }
   return (
     <header className="border-b-2 flex mx-1 flex-row justify-around sm:justify-between sm:mx-auto items-center sm:px-28">
       <div className="flex items-center position:fixed">
@@ -26,11 +33,11 @@ const Header = () => {
       </div>
 
       <div className="hidden sm:flex flex-nowrap justify-end space-x-4">
-        <Button path="/Subscription">SUBSCRIBE FOR $0.25/WEEK</Button>
-        <Button path="/Login">Log in</Button>
+        <Button path="/subscription">SUBSCRIBE FOR $0.25/WEEK</Button>
+        <Button path="/login">Log in</Button>
       </div>
 
-      <UserCircleIcon width="24" height="24" className="sm:hidden" />
+      <UserCircleIcon width="24" height="24" className="sm:hidden" onClick={handleClick} />
     </header>
   );
 };
