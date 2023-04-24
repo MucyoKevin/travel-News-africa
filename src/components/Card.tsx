@@ -25,10 +25,10 @@ const Card = ({
   }
 
   return (
-    <div className="flex flex-col px-2 max-w-sm min-w-[240px] py-4 ">
+    <div className="flex flex-col px-2 max-w-sm min-w-sm py-4 ">
       {image && (
         <Image
-          className="w-full"
+          className="w-full min-w-sm"
           src={image.src}
           height={height}
           width={width}
@@ -93,10 +93,10 @@ export const LongCard = ({
 
 interface WideCardProps {
   children: React.ReactNode;
-  image: { src: string; alt: string };
+  image?: { src: string; alt: string };
   height?: number;
   width?: number;
-  date? : React.ReactNode;
+  date: string;
   title: string;
   href: string;
 }
@@ -111,39 +111,30 @@ export const WideCard = ({
   href,
 }: WideCardProps) => {
   return (
-    <div className="flex flex-col sm:flex-row py-5 px-2 justify-around items-stretch border-b-2 max-w-5xl">
-      <div className="">
-        <p className="p-3 whitespace-nowrap hidden sm:block">{date}</p>
+    <div className="flex flex-col-reverse mx-2 md:grid md:grid-cols-6 md:gap-5 md:max-w-5xl my-6 md:my-2">
+      <div className="col-span-1 my-1">
+        <p className="font-bold">{new Date(date).toDateString()}</p>
       </div>
-      <h2 className="hover:underline m-2 text-2xl sm:hidden  capitalize font-bold">
-        <Link href={`/travel/${href}`}> {title} </Link>
-      </h2>
-      <div className="pl-2 sm:flex sm:flex-col">
-        <h2 className="hover:underline m-2 text-2xl sm:text-2xl hidden sm:block capitalize font-bold">
+      <div className="col-span-3 sm:flex sm:flex-col my-1">
+        <h2 className="hover:underline text-2xl sm:text-2xl sm:block capitalize font-bold">
           <Link href={`/travel/${href}`}> {title} </Link>
         </h2>
+        <p className="text-lg clear-left">{children}</p>
+      </div>
+      {image && (
         <Image
-          className="max-w-[150px] max-h-[99px] float-right mr-4 mb-4 sm:hidden"
+          className="col-span-2 w-full"
           src={image.src}
           height={height}
           width={width}
           alt={image.alt}
         />
-        <p className="text-lg clear-left">{children}</p>
-      </div>
-      <Image
-        className="hidden sm:block"
-        src={image.src}
-        height={height}
-        width={width}
-        alt={image.alt}
-      />
+      )}
     </div>
   );
 };
 
 // first card
-
 
 interface FirstCardProps {
   children?: React.ReactNode;
@@ -187,10 +178,10 @@ export const FirstCard = ({
         >
           <Link href={`/travel/${href}`}>{title}</Link>
         </h2>
-        {!sm && children && <p className="text-sm indent-4  my-3">{children}</p>}
+        {!sm && children && (
+          <p className="text-sm indent-4  my-3">{children}</p>
+        )}
       </div>
     </div>
   );
 };
-
-

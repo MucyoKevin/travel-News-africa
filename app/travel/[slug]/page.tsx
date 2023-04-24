@@ -8,6 +8,7 @@ import { getPosts, getPostsbyTag, getSinglePost } from "app/graphql/queries";
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import SharingButton from "@/components/SharingButton";
+import Loading from "@/components/Loading";
 
 const SocialMediaLinks = () => {
   return (
@@ -64,16 +65,22 @@ const Post = ({ params }) => {
   const fetchMorePosts = () => {
     return getPosts();
   };
+
   useEffect(() => {
     fetchByTag("editors-pick").then((res) => setEditorsPick(res));
   }, []);
+
   useEffect(() => {
     getPost(params.slug);
     fetchMorePosts().then((res) => setMorePosts(res));
   }, []);
 
   if (!post) {
-    return <p>loading...</p>;
+    return (
+      <div className="flex w-full h-96">
+        <Loading className="mx-auto" />
+      </div>
+    );
   }
 
   return (
@@ -128,6 +135,7 @@ const Post = ({ params }) => {
             {morePosts &&
               morePosts.slice(0, 3).map(({ node: morePosts }) => (
                 <Card
+                  key={morePosts.slug || ""}
                   href={`${morePosts.slug || ""}`}
                   title={morePosts.title || ""}
                   image={{
@@ -142,6 +150,7 @@ const Post = ({ params }) => {
             {morePosts &&
               morePosts.slice(3, 6).map(({ node: morePosts }) => (
                 <Card
+                  key={morePosts.slug || ""}
                   href={`${morePosts.slug || ""}`}
                   title={morePosts.title || ""}
                   image={{
@@ -158,6 +167,7 @@ const Post = ({ params }) => {
             {editorsPick &&
               editorsPick.slice(0, 3).map(({ node: editorsPick }) => (
                 <Card
+                  key={editorsPick?.slug || ""}
                   href={`${editorsPick?.slug || ""}`}
                   title={editorsPick?.title || ""}
                   image={{
@@ -178,6 +188,7 @@ const Post = ({ params }) => {
                 .slice(0, 10)
                 .map(({ node: morePosts }) => (
                   <Card
+                    key={morePosts.slug || ""}
                     href={morePosts.slug || ""}
                     title={morePosts.title || ""}
                   />

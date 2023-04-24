@@ -4,8 +4,8 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['travelnewseastafrica.com'],
+    domains: ["travelnewseastafrica.com"],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

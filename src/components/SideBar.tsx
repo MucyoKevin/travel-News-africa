@@ -37,7 +37,7 @@ const SideBar = () => {
               <p>About Us</p>
             </div>
           </Link>
-          <Link href='/contact'>
+          <Link href="/contact">
             <div className="flex flex-row flex-wrap justify-between text-sm font-semibold mb-2 py-1 px-1 rounded hover:bg-slate-300 cursor-pointer">
               <p>Contact Us</p>
             </div>
@@ -93,7 +93,7 @@ const SideBar = () => {
             <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
           </div>
           <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
-            <Link href="/">Editor's Pick</Link>
+            <Link href="/">Editor&apos;s Pick</Link>
             <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
           </div>
         </div>
