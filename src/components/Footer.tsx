@@ -21,7 +21,7 @@ const footer = () => {
             </div>
           </ul>
         </div>
-        <div className="p-5">
+        {/* <div className="p-5">
           <ul>
             <p className="text-gray-800 font-bold text-2xl pb-4">Sports</p>
             <li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer">
@@ -114,7 +114,7 @@ const footer = () => {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
       <div className="flex flex-col justify-center items-center pt-20 text-center pb-5">
         <h1 className="text-gray-800 font-semibold">
