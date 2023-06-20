@@ -1,44 +1,43 @@
-import { Fragment, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { Fragment, useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 const people = [
   {
     id: 1,
-    name: 'English',
-   
+    name: "English",
   },
   {
     id: 2,
-    name: 'French',
-   },
+    name: "French",
+  },
   {
     id: 3,
-    name: 'Arabic',
-   },
-
-]
+    name: "Arabic",
+  },
+];
 
 function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
-  const [selected, setSelected] = useState(people[0])
+  const [selected, setSelected] = useState(people[0]);
 
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          
           <div className="relative mx-1">
             <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
-              <span className="flex items-center">
-                
-                <span className="ml-3 block truncate">{selected.name}</span>
+              <span className="sm:flex items-center ">
+                <span className="ml-3 block truncate  ">{selected.name}</span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <ChevronUpDownIcon
+                  className="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
               </span>
             </Listbox.Button>
 
@@ -55,8 +54,8 @@ export default function Example() {
                     key={person.id}
                     className={({ active }) =>
                       classNames(
-                        active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-3 pr-9'
+                        active ? "bg-indigo-600 text-white" : "text-gray-900",
+                        "relative cursor-default select-none py-2 pl-3 pr-9"
                       )
                     }
                     value={person}
@@ -65,7 +64,10 @@ export default function Example() {
                       <>
                         <div className="flex items-center">
                           <span
-                            className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
+                            className={classNames(
+                              selected ? "font-semibold" : "font-normal",
+                              "ml-3 block truncate"
+                            )}
                           >
                             {person.name}
                           </span>
@@ -74,8 +76,8 @@ export default function Example() {
                         {selected ? (
                           <span
                             className={classNames(
-                              active ? 'text-white' : 'text-indigo-600',
-                              'absolute inset-y-0 right-0 flex items-center pr-4'
+                              active ? "text-white" : "text-indigo-600",
+                              "absolute inset-y-0 right-0 flex items-center pr-4"
                             )}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
@@ -91,5 +93,5 @@ export default function Example() {
         </>
       )}
     </Listbox>
-  )
+  );
 }

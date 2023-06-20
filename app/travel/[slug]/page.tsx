@@ -91,7 +91,7 @@ const Post = ({ params }) => {
         </h1>
         <p>{(post && parse(post?.excerpt)) || ""}</p>
         <span className="block border border-solid border-gray-300 my-5"></span>
-        <SharingButton />
+        <SharingButton  href={(post?.slug) || ''}/>
         {(post && parse(post?.content)) || ""}
         <Author
           author={(post && post?.author?.node?.name) || ""}

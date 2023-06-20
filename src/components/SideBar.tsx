@@ -18,7 +18,7 @@ const SideBar = () => {
       <div
         className={
           ShouldMenuOpen
-            ? "fixed bg-primary-color list-none top-0 left-0 h-full w-48 text-black py-3 space-y-3 "
+            ? "sm:fixed fixed bg-primary-color list-none top-0 left-0 h-full w-48 text-black py-3 space-y-3 "
             : "hidden"
         }
       >
@@ -42,46 +42,12 @@ const SideBar = () => {
               <p>Contact Us</p>
             </div>
           </Link>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2 ">
-            <Link href="/">Tech</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 inset-y-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
-            <Link href="/">Politics</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
-            <Link href="/">Business</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
-            <Link href="/">Life & style</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
-            <Link href="/">Health</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
-            <Link href="/">Sports</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
-            <Link href="/">Opinion</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
-            <Link href="/">Puzzles</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
+         
+          {/* <div className="flex flex-row flex-wrap justify-between text-sm mb-2">
             <Link href="/">Countries</Link>
             <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
-          <div className="flex flex-row flex-wrap justify-between text-sm mb-1">
-            <Link href="/">News</Link>
-            <ChevronRightIcon className="relative inline-flex w-3 h-5 top-0 right-0" />
-          </div>
+          </div> */}
+          
           <span className="border-b-2 py-1"></span>
 
           <div className="flex flex-row flex-wrap justify-between text-sm mb-2 pt-2">
